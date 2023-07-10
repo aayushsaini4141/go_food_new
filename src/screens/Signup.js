@@ -5,28 +5,34 @@ export default function Signup() {
     const [credentials, setcredentials] = useState({name:"",email:"",password:"",geolocation:""})
 
     const handleSubmit = async (e) => {
-        try {
-          e.preventDefault();
-      
-          const response = await fetch("http://localhost:5000/api/creatuser", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, locstion: credentials.geolocation })
-          });
-      
-          const json = await response.json();
-          console.log(json);
-      
-          if (json.success) {
-            alert("Enter Valid Credentials");
-          }
-        } catch (error) {
-          console.error('An error occurred:', error);
-          // Handle the error gracefully
+      try {
+        e.preventDefault();
+    
+        const response = await fetch("http://localhost:5000/api/creatuser", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            name: credentials.name, 
+            email: credentials.email, 
+            password: credentials.password, 
+            location: credentials.geolocation // corrected property name
+          })
+        });
+    
+        if (response.status !== 200) {
+          alert(response.error);
+          alert("Enter Valid Credentials");
+        } else {
+          alert("Created successfully");
         }
-      };
+      } catch (error) {
+        console.error('An error occurred:', error);
+        alert('An error occurred. Please try again.');
+      }
+    };
+    
       
  const onChange=(event)=>{
     setcredentials({...credentials,[event.target.name]:event.target.value})

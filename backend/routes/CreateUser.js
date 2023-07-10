@@ -1,12 +1,13 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 const User = require('../models/User');
 const {body,validationResult} = require('express-validator');
-router.post("/createuser", [
+
+router.post("/creatuser", [
 body('email','Incorrect Email').isEmail(),
 body('name').isLength({min: 5 }),
-body('password','Incorrect Password').isLength({min: 5 })]
-,async (req, res) => {
+body('password','Incorrect Password').isLength({min: 5 })],
+async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -23,10 +24,12 @@ body('password','Incorrect Password').isLength({min: 5 })]
             email,
             location
         });
+        // user.save();
 
         return res.status(200).json({ message: 'User created successfully' });
     } catch (error) {
-        return res.status(400).json({ error: 'Invalid JSON format' });
+        console.log(error);
+        return res.status(400).json({ error: 'Invalid JSON format', err:error });
     }
 }
 )  
