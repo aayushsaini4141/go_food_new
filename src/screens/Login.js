@@ -1,14 +1,15 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Login() {
   const [credentials, setcredentials] = useState({email:"",password:""})
+  let navigate = useNavigate()
 
     const handleSubmit = async (e) => {
       try {
         e.preventDefault();
     
-        const response = await fetch("http://localhost:5000/api/creatuser", {
+        const response = await fetch("http://localhost:5000/api/loginuser", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -23,9 +24,12 @@ export default function Login() {
         if (response.status !== 200) {
        
           alert("Enter Valid Credentials");
-        } else {
-          alert("Created successfully");
+        } 
+        else {
+          navigate("/");
         }
+
+
       } catch (error) {
         console.error('An error occurred:', error);
         alert('An error occurred. Please try again.');
