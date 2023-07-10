@@ -22,7 +22,7 @@ export default function Signup() {
         });
     
         if (response.status !== 200) {
-          alert(response.error);
+       
           alert("Enter Valid Credentials");
         } else {
           alert("Created successfully");
