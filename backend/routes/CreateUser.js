@@ -14,9 +14,9 @@ async (req, res) => {
     }
 
     try {
-        const requestBody = JSON.parse(req.body);
+        // const requestBody = JSON.parse(req.body);
 
-        const { name, password, email, location } = requestBody;
+        const { name, password, email, location } = req.body;
 
         await User.create({
             name,
@@ -29,7 +29,7 @@ async (req, res) => {
         return res.status(200).json({ message: 'User created successfully' });
     } catch (error) {
         console.log(error);
-        return res.status(400).json({ error: 'Invalid JSON format', err:error });
+        return res.status(400).json({ error: 'Invalid JSON format'});
     }
 }
 )  
