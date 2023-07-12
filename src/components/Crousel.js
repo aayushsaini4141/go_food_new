@@ -3,7 +3,7 @@ import React from 'react'
 export default function Crousel() {
     return (
         <div>
-            <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{objectFit:"scale-down !important"}}>
+            <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel" style={{objectFit:"contain !important"}}>
 
                 <div className="carousel-inner" id='carousel'>
                 <div className="carousel-caption" style={{zIndex:"10"}}>
@@ -14,13 +14,13 @@ export default function Crousel() {
 
                 </div>
                     <div className="carousel-item active">
-                        <img src="https://source.unsplash.com/random/900×700/?burger" className="d-block w-100" style={{ filter:"brightness(30%)"}} alt="..." />
+                        <img src="https://source.unsplash.com/random/900×700/?burger" className="d-block w-100" style={{ filter:"brightness(30%)",objectFit:"contain !important"}} alt="..." />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://source.unsplash.com/random/900×700/?pastry" className="d-block w-100" style={{ filter:"brightness(30%)"}} alt="..." />
+                        <img src="https://source.unsplash.com/random/900×700/?pastry" className="d-block w-100" style={{ filter:"brightness(30%)",objectFit:"contain !important"}} alt="..." />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://source.unsplash.com/random/900×700/?barbeque" className="d-block w-100" style={{ filter:"brightness(30%)"}} alt="..." />
+                        <img src="https://source.unsplash.com/random/900×700/?barbeque" className="d-block w-100" style={{ filter:"brightness(30%)",objectFit:"contain !important"}} alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
