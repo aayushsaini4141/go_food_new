@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
+const jwtSecret = "MynameisRagnarLuthbrokeViking$#"
 router.post(
   "/creatuser",
   [
@@ -27,7 +27,7 @@ router.post(
 
       await User.create({
         name,
-        secPassword,
+        password:secPassword ,
         email,
         location,
       });
@@ -66,16 +66,25 @@ router.post(
       let userData = await User.findOne({ email });
       if (!userData) {
         return res
-          .status(404)
+          .status(400)
           .json({ errors: "try logging with correct credentials" });
       }
-      if (req.body.password !== userData.password) {
+      const pwdCompare = await bcrypt.compare(req.body.password,userData.password)
+
+      if (!pwdCompare) {
         return res
-          .status(404)
+          .status(400)
           .json({ errors: "try logging with correct credentials" });
       }
 
-      return res.json({ success: true });
+      const data = {
+        user:{
+            id:userData.id
+        }
+    }
+
+    const authToken = jwt.sign(data,jwtSecret)
+      return res.json({ success: true,authToken:authToken });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ error: "Invalid JSON format", err: error });
