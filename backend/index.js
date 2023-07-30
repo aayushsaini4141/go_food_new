@@ -27,7 +27,8 @@ app.use(express.json())
 // app.post('/api/creatuser', (req, res) => {
 //   res.status(200).send({message:"good"});
 // });
-app.use('/api',require("./routes/CreateUser"))
+app.use('/api',require("./routes/CreateUser"));
+app.use('/api',require("./routes/DisplayData"));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
