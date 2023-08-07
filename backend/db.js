@@ -13,7 +13,8 @@ const mongoDB = async (mongoURI) => {
         const food_category = mongoose.connection.collection("FoodCatagory");
         const foodCategoryData = await food_category.find({}).toArray();
         
-        console.log(foodCategoryData);
+        
+        // console.log(foodCategoryData);
 
         global.food_items = fetched_data;
         global.FoodCatagory = foodCategoryData;
