@@ -32,7 +32,7 @@ export default function Home() {
 
   }, []);
   let result = foodItem.filter((item) => item.CategoryName === foodCat[0].CategoryName)
-  console.log(result[0]?.options[0]?.half);
+  // console.log(result[0]?.options[0]?.half);
 
   return (
     <div>
@@ -87,9 +87,9 @@ export default function Home() {
                     .map((filterItems) => (filterItems &&
                       <div key={filterItems._id} className='col-12 col-md-6 col-lg-3'>
                         <Card
-                            foodName={filterItems.name}
+                            foodItem= {filterItems}
                             options={filterItems.options && filterItems.options[0]}
-                            imgSrc={filterItems.img}
+                            
                           />
                         {/* <p>{filterItems.name}</p>
                         <p>{filterItems?.options?.map(opt => <span>{opt.half ?? "abcd"}</span>)}
