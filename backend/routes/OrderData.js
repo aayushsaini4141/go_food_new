@@ -7,7 +7,7 @@ router.post('/orderData', async(req, res) => {
     await data.splice(0,0, {Order_date:req.body.order_date})
     
     let eId = await Order.findOne({'email': req.body.email})
-    console.log(eId)
+
     if (eId === null) {
         try {
             await Order.create({
@@ -18,18 +18,21 @@ router.post('/orderData', async(req, res) => {
             })
         }catch (error) {
             console.log(error.message)
-            res.send("Server Error", error.message)
+            res.status(500).send("Server Error", error.message);
         }
     }
 
     else {
         try {
-            await Order.findOne({email: req.body.email},
-            {$push: {order_data: data}}).then(() => {
-                res.json({success: true})
-            })
+            await Order.findOneAndUpdate(
+                { email: req.body.email },
+                { $push: { order_data: data } },
+                { new: true } 
+            ).then(() => {
+                res.json({ success: true });
+            });
         }catch (error) {
-            res.send("Server Error", error.message)
+            res.status(500).send("Server Error", error.message);
         }
     }
             
