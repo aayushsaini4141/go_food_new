@@ -26,7 +26,8 @@ export default function Login() {
           alert("Enter Valid Credentials");
         } 
         else {
-          const data = await response.json();                      // Parse the JSON response  //solve the error using chat gpt  
+          const data = await response.json();
+          localStorage.setItem("userEmail",credentials.email)                       // Parse the JSON response  //solve the error using chat gpt  
           localStorage.setItem("authToken",data.authToken)        //localStorage.setItem("authToken",json.authToken) shows error 
           console.log(localStorage.getItem("authToken"));
           navigate("/");
