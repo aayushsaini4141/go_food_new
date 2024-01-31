@@ -23,10 +23,10 @@ GoFood web application is for ordering food
 
 ## Technologies Used
 
-### Front-end: Bootstrap, JavaScript, React.js
-### Back-end: Node.js and Express.js with MongoDB
-### API: RESTful API
-### Deployement: Vercel
+#### Front-end: Bootstrap, JavaScript, React.js
+#### Back-end: Node.js and Express.js with MongoDB
+#### API: RESTful API
+#### Deployement: Vercel
 
 ## Install Dependencies:
 
@@ -54,5 +54,5 @@ npm start
 
 cd ./backend
 ```sh
-nodemon index.js
+node index.js
 ```
